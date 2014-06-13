@@ -25,9 +25,9 @@
         // Initialization code
 
 		objectsDict = [[NSMapTable alloc] init];
-
 		extensionBlocks = [[NSMutableDictionary alloc] init];
 
+		[self setPagingEnabled:YES];
 		[self setDelegate:self];
     }
     return self;
