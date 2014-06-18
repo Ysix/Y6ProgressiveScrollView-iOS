@@ -42,6 +42,4 @@
 	return [self setUserInfos:userInfos forObject:object withFlag:FLAG_FRAME atOffsetValue:offset];
 }
 
-
-
 @end
