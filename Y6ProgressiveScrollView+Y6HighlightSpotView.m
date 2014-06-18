@@ -14,7 +14,7 @@
 {
 	return [self addExtensionBlocksForSoloOffset:^(id object, id userInfos) {
 
-		[object	setFrame:CGRectFromString([userInfos objectForKey:@"frame"])];
+		[(Y6HighlightSpotView *)object	highlightPoint:CGPointFromString([userInfos objectForKey:@"point"]) withCirleRadius:[[userInfos objectForKey:@"radius"] floatValue] coveringRect:CGRectFromString([userInfos objectForKey:@"frame"])];
 
 	} andBetweenOffset:^(id object, id previousUserInfos, float progressionPercent, id nextUserInfos) {
 
