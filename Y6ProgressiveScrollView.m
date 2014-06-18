@@ -16,11 +16,11 @@
 
 @implementation Y6ProgressiveScrollView
 
-@synthesize progressionDelegate, referenceOffsetIsY;
+@synthesize progressionDelegate, referenceOffsetIsY, pageControl;
 
-- (id)initWithFrame:(CGRect)frame
+- (id)init
 {
-    self = [super initWithFrame:frame];
+    self = [super init];
     if (self) {
         // Initialization code
 
@@ -29,8 +29,29 @@
 
 		[self setPagingEnabled:YES];
 		[self setDelegate:self];
+
+		pageControl = [[UIPageControl alloc] init];
+		pageControl.currentPage = 0;
+		[pageControl setHidden:YES];
+
+		[self setShowsHorizontalScrollIndicator:NO];
+		[self setShowsVerticalScrollIndicator:NO];
     }
     return self;
+}
+
+- (void)setContentSize:(CGSize)contentSize
+{
+	[super setContentSize:contentSize];
+
+	[pageControl setNumberOfPages:contentSize.width / self.frame.size.width];
+}
+
+- (void)setFrame:(CGRect)frame
+{
+	[super setFrame:frame];
+
+	pageControl.frame = CGRectMake(frame.origin.x, frame.origin.y + frame.size.height - 30, frame.size.width, 10);
 }
 
 #pragma mark - extension management methods
@@ -102,6 +123,12 @@
 
 
 #pragma mark - scrollViewDelegate
+
+-(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+	int page = scrollView.contentOffset.x/scrollView.frame.size.width;
+	pageControl.currentPage=page;
+}
 
 // pour optimiser si besoin, trier par offset a l'insertion et interrompre la recherche lorsqu'on a trouver le bon, plutot que de chercher dans toute la liste.
 

@@ -12,10 +12,7 @@
 @protocol Y6ProgressiveScrollViewDelegate <NSObject>
 
 - (void)updateObject:(id)object withUserInfos:(id)userInfos forFlag:(unsigned int)flag;
-
-
 - (void)updateObject:(id)object fromPreviousUserInfos:(id)previousUserInfos atProgressionPercent:(float)percent toNextUserInfos:(id)nextUserInfos forFlag:(unsigned int)flag;
-
 
 @end
 
@@ -31,6 +28,8 @@
 
 @property (nonatomic, strong)	id<Y6ProgressiveScrollViewDelegate>	progressionDelegate;
 @property (nonatomic) BOOL	referenceOffsetIsY;
+
+@property (nonatomic, strong, readonly) UIPageControl *pageControl;
 
 - (BOOL)addExtensionBlocksForSoloOffset:(void (^)(id object, id userInfos))soloBlock andBetweenOffset:(void (^)(id object, id previousUserInfos, float progressionPercent, id nextUserInfos))betweenBlock forFlag:(unsigned int)flag;
 
