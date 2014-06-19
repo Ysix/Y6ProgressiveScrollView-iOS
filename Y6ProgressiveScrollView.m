@@ -8,6 +8,8 @@
 
 #import "Y6ProgressiveScrollView.h"
 
+// todo: surclasser setContentOffset animated:No pour modifier les elements en consequence.
+
 @interface Y6ProgressiveScrollView () <UIScrollViewDelegate>
 
 @end
